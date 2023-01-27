@@ -32,14 +32,14 @@ variable "balloon" {
 }
 
 variable "network" {
-  type = map(object({
+  type = list(object({
     bridge   = string
     vlan_tag = optional(number, -1)
   }))
 }
 
 variable "disk" {
-  type = map(object({
+  type = list(object({
     size     = optional(string, "4G")
     location = optional(string, "local-lvm")
   }))
