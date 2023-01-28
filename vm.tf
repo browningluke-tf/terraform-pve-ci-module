@@ -1,4 +1,4 @@
-resource "proxmox_vm_qemu" "manager" {
+resource "proxmox_vm_qemu" "pve_vm_host" {
   depends_on = [
     null_resource.cloud_init_config_files,
   ]
