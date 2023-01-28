@@ -9,6 +9,8 @@ resource "proxmox_vm_qemu" "pve_vm_host" {
   target_node = var.target_node
   clone       = var.template
 
+  agent = 1
+
   /* Hardware */
   // CPU
   cores   = var.cores
