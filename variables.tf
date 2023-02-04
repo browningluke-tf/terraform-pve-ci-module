@@ -35,6 +35,7 @@ variable "network" {
   type = list(object({
     bridge   = string
     vlan_tag = optional(number, -1)
+    mac      = optional(string, null)
   }))
 }
 
