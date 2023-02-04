@@ -27,7 +27,7 @@ resource "proxmox_vm_qemu" "pve_vm_host" {
       model   = "virtio"
       bridge  = network.value.bridge
       tag     = network.value.vlan_tag
-      macaddr = network.value.macaddr
+      macaddr = network.value.mac
     }
   }
 
