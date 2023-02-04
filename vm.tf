@@ -24,9 +24,10 @@ resource "proxmox_vm_qemu" "pve_vm_host" {
     for_each = var.network
 
     content {
-      model  = "virtio"
-      bridge = network.value.bridge
-      tag    = network.value.vlan_tag
+      model   = "virtio"
+      bridge  = network.value.bridge
+      tag     = network.value.vlan_tag
+      macaddr = network.value.macaddr
     }
   }
 
