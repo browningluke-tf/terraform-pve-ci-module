@@ -41,6 +41,8 @@ resource "proxmox_vm_qemu" "pve_vm_host" {
     }
   }
 
+  tags = join(";", sort(var.tags)) # Proxmox sorts tags lexicographically
+
   /* Cloud-Init  */
   // sshkeys and other User-Data parameters are specified with a custom config file.
   cicustom = "user=${local.ci_file_storage}:${local.ci_file_relative_path_user}"

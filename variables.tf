@@ -46,6 +46,10 @@ variable "disk" {
   }))
 }
 
+variable "tags" {
+  type = list(string)
+}
+
 variable "ci_cdrom_storage" {
   type    = string
   default = "local-lvm"
