@@ -15,7 +15,7 @@ resource "local_file" "cloud_init_user_data_file" {
 
     timezone = var.timezone
 
-    hostname = "${var.hostname}"
+    hostname = var.hostname
     fqdn     = "${var.hostname}.${var.domain_name}"
   })
   filename = "${var.ci_conf_path}/${local.ci_file_user_filename}.rendered"
