@@ -49,4 +49,6 @@ resource "proxmox_vm_qemu" "pve_vm_host" {
   // Create the Cloud-Init drive on the "local-lvm" storage
   cloudinit_cdrom_storage = var.ci_cdrom_storage
   os_type                 = "cloud-init"
+
+  force_recreate_on_change_of = filesha256(local.ci_file_local_path_user)
 }
