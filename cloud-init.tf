@@ -26,6 +26,10 @@ resource "local_file" "cloud_init_user_data_file" {
 
 resource "null_resource" "cloud_init_config_files" {
 
+  triggers = {
+    ci_file_id = local_file.cloud_init_user_data_file.id
+  }
+
   provisioner "file" {
     source      = local_file.cloud_init_user_data_file.filename
     destination = "/var/lib/${local.ci_file_storage}/${local.ci_file_relative_path_user}"
