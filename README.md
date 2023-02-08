@@ -7,7 +7,7 @@
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.3.7 |
 | <a name="requirement_local"></a> [local](#requirement\_local) | ~> 2.3.0 |
 | <a name="requirement_null"></a> [null](#requirement\_null) | ~> 3.2.1 |
-| <a name="requirement_proxmox"></a> [proxmox](#requirement\_proxmox) | ~> 2.9.11 |
+| <a name="requirement_proxmox"></a> [proxmox](#requirement\_proxmox) | ~> 2.9.13 |
 
 ## Providers
 
@@ -48,6 +48,7 @@ No modules.
 | <a name="input_pve_host"></a> [pve\_host](#input\_pve\_host) | description | `string` | n/a | yes |
 | <a name="input_pve_password"></a> [pve\_password](#input\_pve\_password) | description | `string` | n/a | yes |
 | <a name="input_pve_user"></a> [pve\_user](#input\_pve\_user) | description | `string` | n/a | yes |
+| <a name="input_qemu_os"></a> [qemu\_os](#input\_qemu\_os) | value | `string` | `"l26"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | n/a | `list(string)` | n/a | yes |
 | <a name="input_target_node"></a> [target\_node](#input\_target\_node) | n/a | `string` | n/a | yes |
 | <a name="input_template"></a> [template](#input\_template) | n/a | `string` | `""` | no |

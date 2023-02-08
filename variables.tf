@@ -16,6 +16,12 @@ variable "template" {
   default = ""
 }
 
+variable "qemu_os" {
+  type        = string
+  description = "value"
+  default     = "l26"
+}
+
 variable "cores" {
   type    = number
   default = 1
