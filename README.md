@@ -7,7 +7,7 @@
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.3.7 |
 | <a name="requirement_local"></a> [local](#requirement\_local) | ~> 2.3.0 |
 | <a name="requirement_null"></a> [null](#requirement\_null) | ~> 3.2.1 |
-| <a name="requirement_proxmox"></a> [proxmox](#requirement\_proxmox) | ~> 2.9.11 |
+| <a name="requirement_proxmox"></a> [proxmox](#requirement\_proxmox) | ~> 2.9.13 |
 
 ## Providers
 
