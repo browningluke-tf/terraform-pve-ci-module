@@ -46,7 +46,7 @@ No modules.
 | <a name="input_network"></a> [network](#input\_network) | n/a | <pre>list(object({<br>    bridge   = string<br>    vlan_tag = optional(number, -1)<br>    mac      = optional(string, null)<br>  }))</pre> | n/a | yes |
 | <a name="input_pubkey_path"></a> [pubkey\_path](#input\_pubkey\_path) | value | `string` | n/a | yes |
 | <a name="input_pve_host"></a> [pve\_host](#input\_pve\_host) | description | `string` | n/a | yes |
-| <a name="input_pve_password"></a> [pve\_password](#input\_pve\_password) | description | `string` | n/a | yes |
+| <a name="input_pve_private_key"></a> [pve\_private\_key](#input\_pve\_private\_key) | Key MUST be in authorized\_keys as command="scp -t /path/to/ci/snippets",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-ed25519 <key> | `string` | n/a | yes |
 | <a name="input_pve_user"></a> [pve\_user](#input\_pve\_user) | description | `string` | n/a | yes |
 | <a name="input_qemu_os"></a> [qemu\_os](#input\_qemu\_os) | value | `string` | `"l26"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | n/a | `list(string)` | n/a | yes |

@@ -111,9 +111,9 @@ variable "pve_user" {
   sensitive   = true
 }
 
-variable "pve_password" {
+variable "pve_private_key" {
   type        = string
-  description = "description"
+  description = "Key MUST be in authorized_keys as command=\"scp -t /path/to/ci/snippets\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-ed25519 <key>"
   sensitive   = true
 }
 
