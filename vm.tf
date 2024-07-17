@@ -78,7 +78,9 @@ resource "proxmox_virtual_environment_vm" "vm" {
     datastore_id = var.ci_cdrom_storage
     interface    = "ide2"
 
-    user_data_file_id = "${local.ci_file_storage}:${local.ci_file_relative_path_user}"
+    user_data_file_id    = "${local.ci_file_storage}:${local.ci_file_relative_path_user}"
+    network_data_file_id = var.ci_network_path != null ? "${local.ci_file_storage}:${local.ci_file_relative_path_network}" : null
+
   }
 
   serial_device {

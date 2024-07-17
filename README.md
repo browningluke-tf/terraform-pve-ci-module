@@ -23,6 +23,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [proxmox_virtual_environment_vm.vm](https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_vm) | resource |
+| [terraform_data.ci_network_file](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
 | [terraform_data.ci_user_file](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
 
 ## Inputs
@@ -31,6 +32,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_balloon"></a> [balloon](#input\_balloon) | n/a | `number` | `0` | no |
 | <a name="input_ci_cdrom_storage"></a> [ci\_cdrom\_storage](#input\_ci\_cdrom\_storage) | n/a | `string` | n/a | yes |
+| <a name="input_ci_network_path"></a> [ci\_network\_path](#input\_ci\_network\_path) | value | `string` | `null` | no |
 | <a name="input_ci_user_path"></a> [ci\_user\_path](#input\_ci\_user\_path) | value | `string` | n/a | yes |
 | <a name="input_cores"></a> [cores](#input\_cores) | n/a | `number` | `1` | no |
 | <a name="input_cpu"></a> [cpu](#input\_cpu) | n/a | `string` | `"host"` | no |

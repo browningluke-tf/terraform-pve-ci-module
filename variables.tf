@@ -92,6 +92,12 @@ variable "ci_user_path" {
   description = "value"
 }
 
+variable "ci_network_path" {
+  type        = string
+  default     = null
+  description = "value"
+}
+
 /* Hostname */
 variable "hostname" {
   type        = string
