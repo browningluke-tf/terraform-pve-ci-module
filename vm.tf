@@ -1,55 +1,91 @@
-resource "proxmox_vm_qemu" "pve_vm_host" {
+resource "proxmox_virtual_environment_vm" "vm" {
   depends_on = [
-    null_resource.cloud_init_config_files,
+    terraform_data.ci_user_file,
+    terraform_data.ci_network_file
   ]
 
-  name = var.name
-  vmid = var.vmid
+  name  = var.name
+  vm_id = var.vmid
 
-  target_node = var.target_node
-  clone       = var.template
+  node_name = var.target_node
 
-  qemu_os = var.qemu_os
-  agent   = 1
+  scsi_hardware = var.scsi_hardware
 
-  /* Hardware */
-  // CPU
-  cores   = var.cores
-  sockets = 1
-  cpu     = "kvm64"
-  // RAM
-  memory  = var.memory
-  balloon = var.balloon
+  started = var.started
+  on_boot = var.on_boot
 
-  dynamic "network" {
-    for_each = var.network
+  tags = sort(var.tags) # Proxmox sorts tags lexicographically
+
+  agent {
+    enabled = true
+    timeout = "15m"
+    trim    = true
+  }
+
+  operating_system {
+    type = var.qemu_os
+  }
+
+  dynamic "clone" {
+    for_each = var.template_id != null ? [var.template_id] : []
 
     content {
-      model   = "virtio"
-      bridge  = network.value.bridge
-      tag     = network.value.vlan_tag
-      macaddr = network.value.mac
+      vm_id   = clone.value
+      retries = 2
+      full    = true
     }
+  }
+
+  // Resources
+
+  cpu {
+    type    = var.cpu
+    sockets = 1
+    cores   = var.cores
+  }
+
+  memory {
+    dedicated = var.memory
+    floating  = var.balloon
   }
 
   dynamic "disk" {
     for_each = var.disk
 
     content {
-      type    = "scsi"
-      size    = disk.value.size
-      storage = disk.value.location
+      datastore_id = disk.value.location
+      interface    = disk.value.interface
+      iothread     = disk.value.iothread
+      discard      = disk.value.discard
+      size         = disk.value.size
     }
   }
 
-  tags = join(";", sort(var.tags)) # Proxmox sorts tags lexicographically
+  dynamic "network_device" {
+    for_each = var.network
 
-  /* Cloud-Init  */
-  // sshkeys and other User-Data parameters are specified with a custom config file.
-  cicustom = "user=${local.ci_file_storage}:${local.ci_file_relative_path_user}"
-  // Create the Cloud-Init drive on the "local-lvm" storage
-  cloudinit_cdrom_storage = var.ci_cdrom_storage
-  os_type                 = "cloud-init"
+    content {
+      bridge      = network_device.value.bridge
+      vlan_id     = network_device.value.vlan_tag
+      mac_address = network_device.value.mac
+    }
+  }
 
-  force_recreate_on_change_of = filesha256(local.ci_file_local_path_user)
+  // Cloud init
+
+  initialization {
+    // Cloud-init ISO
+    datastore_id = var.ci_cdrom_storage
+    interface    = "ide2"
+
+    user_data_file_id = "${local.ci_file_storage}:${local.ci_file_relative_path_user}"
+  }
+
+  serial_device {
+    device = "socket"
+  }
+
+  vga {
+    type = "serial0"
+  }
 }

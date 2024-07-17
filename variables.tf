@@ -11,15 +11,26 @@ variable "target_node" {
   type = string
 }
 
-variable "template" {
-  type    = string
-  default = ""
+variable "template_id" {
+  type    = number
+  default = null
 }
 
 variable "qemu_os" {
   type        = string
   description = "value"
   default     = "l26"
+}
+
+variable "scsi_hardware" {
+  type        = string
+  description = "value"
+  default     = "virtio-scsi-single"
+}
+
+variable "cpu" {
+  type    = string
+  default = "host"
 }
 
 variable "cores" {
@@ -40,15 +51,18 @@ variable "balloon" {
 variable "network" {
   type = list(object({
     bridge   = string
-    vlan_tag = optional(number, -1)
+    vlan_tag = optional(number, null)
     mac      = optional(string, null)
   }))
 }
 
 variable "disk" {
   type = list(object({
-    size     = optional(string, "4G")
-    location = optional(string, "local-lvm")
+    interface = string
+    location  = string
+    size      = optional(string, "4G")
+    discard   = optional(string, "on")
+    iothread  = optional(bool, true)
   }))
 }
 
@@ -56,14 +70,24 @@ variable "tags" {
   type = list(string)
 }
 
+variable "started" {
+  type    = bool
+  default = true
+}
+
+variable "on_boot" {
+  type    = bool
+  default = false
+}
+
+
 variable "ci_cdrom_storage" {
-  type    = string
-  default = "local-lvm"
+  type = string
 }
 
 /* Cloud init config */
 
-variable "ci_conf_path" {
+variable "ci_user_path" {
   type        = string
   description = "value"
 }
@@ -76,7 +100,6 @@ variable "hostname" {
 
 variable "domain_name" {
   type        = string
-  default     = ""
   description = "description"
 }
 
