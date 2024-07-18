@@ -12,7 +12,6 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_proxmox"></a> [proxmox](#provider\_proxmox) | 0.61.1 |
-| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
 
 ## Modules
 
@@ -22,9 +21,9 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [proxmox_virtual_environment_file.ci_network_file](https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_file) | resource |
+| [proxmox_virtual_environment_file.ci_user_file](https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_file) | resource |
 | [proxmox_virtual_environment_vm.vm](https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_vm) | resource |
-| [terraform_data.ci_network_file](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
-| [terraform_data.ci_user_file](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
 
 ## Inputs
 
@@ -45,9 +44,6 @@ No modules.
 | <a name="input_network"></a> [network](#input\_network) | n/a | <pre>list(object({<br>    bridge   = string<br>    vlan_tag = optional(number, null)<br>    mac      = optional(string, null)<br>  }))</pre> | n/a | yes |
 | <a name="input_on_boot"></a> [on\_boot](#input\_on\_boot) | n/a | `bool` | `false` | no |
 | <a name="input_pubkey_path"></a> [pubkey\_path](#input\_pubkey\_path) | value | `string` | n/a | yes |
-| <a name="input_pve_host"></a> [pve\_host](#input\_pve\_host) | description | `string` | n/a | yes |
-| <a name="input_pve_private_key"></a> [pve\_private\_key](#input\_pve\_private\_key) | Key MUST be in authorized\_keys as command="scp -t /path/to/ci/snippets",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-ed25519 <key> | `string` | n/a | yes |
-| <a name="input_pve_user"></a> [pve\_user](#input\_pve\_user) | description | `string` | n/a | yes |
 | <a name="input_qemu_os"></a> [qemu\_os](#input\_qemu\_os) | value | `string` | `"l26"` | no |
 | <a name="input_scsi_hardware"></a> [scsi\_hardware](#input\_scsi\_hardware) | value | `string` | `"virtio-scsi-single"` | no |
 | <a name="input_started"></a> [started](#input\_started) | n/a | `bool` | `true` | no |

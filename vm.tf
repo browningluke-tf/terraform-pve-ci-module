@@ -1,7 +1,7 @@
 resource "proxmox_virtual_environment_vm" "vm" {
   depends_on = [
-    terraform_data.ci_user_file,
-    terraform_data.ci_network_file
+    proxmox_virtual_environment_file.ci_user_file,
+    proxmox_virtual_environment_file.ci_network_file
   ]
 
   name  = var.name
@@ -78,9 +78,8 @@ resource "proxmox_virtual_environment_vm" "vm" {
     datastore_id = var.ci_cdrom_storage
     interface    = "ide2"
 
-    user_data_file_id    = "${local.ci_file_storage}:${local.ci_file_relative_path_user}"
-    network_data_file_id = var.ci_network_path != null ? "${local.ci_file_storage}:${local.ci_file_relative_path_network}" : null
-
+    user_data_file_id    = proxmox_virtual_environment_file.ci_user_file.id
+    network_data_file_id = var.ci_network_path != null ? proxmox_virtual_environment_file.ci_network_file[0].id : null
   }
 
   serial_device {

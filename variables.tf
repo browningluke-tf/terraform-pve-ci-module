@@ -132,22 +132,3 @@ variable "pubkey_path" {
   type        = string
   description = "value"
 }
-
-/* Proxmox Connection Details */
-variable "pve_user" {
-  type        = string
-  description = "description"
-  sensitive   = true
-}
-
-variable "pve_private_key" {
-  type        = string
-  description = "Key MUST be in authorized_keys as command=\"scp -t /path/to/ci/snippets\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-ed25519 <key>"
-  sensitive   = true
-}
-
-variable "pve_host" {
-  type        = string
-  description = "description"
-  sensitive   = true
-}
